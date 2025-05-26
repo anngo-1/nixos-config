@@ -18,9 +18,9 @@ echo -e "${GREEN}Starting NixOS configuration deployment...${NC}"
 # make sure we're in the right directory
 cd "$(dirname "$0")"
 
-# update flake inputs
-echo -e "${YELLOW}Updating flake inputs...${NC}"
-nix flake update
+# update flake inputs (OPTIONAL)
+# echo -e "${YELLOW}Updating flake inputs...${NC}"
+# nix flake update
 
 # build and switch system configuration
 echo -e "${YELLOW}Building and switching system configuration...${NC}"
