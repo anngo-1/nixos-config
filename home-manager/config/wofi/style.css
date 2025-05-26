@@ -1,0 +1,40 @@
+/*
+ * Based on the default Wofi CSS
+ */
+* {
+    font-family: monospace; /* Replace with your desired font */
+    font-size: 14pt;         /* Adjust font size as needed */
+    color: #eeeeee;          /* Text color (light gray) */
+}
+window {
+    background-color: #222222;  /* Background color (dark gray) */
+    border: 1px solid #444444; /* Border color (slightly lighter gray) */
+}
+#input {
+    background-color: #333333;  /* Input field background color */
+    border: none;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+#inner-box {
+    margin: 5px;
+    padding: 10px;
+    background-color: #222222;
+}
+#outer-box {
+    margin: 5px;
+    padding: 10px;
+    background-color: #222222;
+}
+#text {
+    padding: 5px;
+}
+#entry:nth-child(odd) {
+    background-color: #282828;  /* Alternating entry background color */
+}
+#entry:selected {
+    background-color: #4c7899;  /* Selected entry background color */
+}
+#entry:selected * {
+    color: #ffffff;          /* Text color of selected entry */
+}
