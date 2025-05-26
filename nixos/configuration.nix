@@ -116,6 +116,7 @@
     pkgs.jq
     pkgs.brightnessctl
     pkgs.timg
+    pkgs.ghostty
     pkgs.dunst
     pkgs.python3
     python3Packages.pip
@@ -125,7 +126,6 @@
     zeromq
     wl-clipboard
     cliphist
-    inputs.ghostty.packages.x86_64-linux.default
     fastfetch
     home-manager
     git
