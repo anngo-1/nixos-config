@@ -1,5 +1,11 @@
 set -e
 
+# enable flakes
+export NIX_CONFIG="experimental-features = nix-command flakes"
+
+# replace hardware-configuration with current
+sudo nixos-generate-config --show-hardware-config > nixos/hardware-configuration.nix
+
 # colors for output
 RED='\033[0;31m'
 GREEN='\033[0;32m'
@@ -27,7 +33,7 @@ home-manager switch --flake .#an@nixos
 # check if config files were installed correctly
 echo -e "${BLUE}Checking configuration files...${NC}"
 
-if [ -f "$HOME/.config/hypr/hypr.conf" ]; then
+if [ -f "$HOME/.config/hypr/hyprland.conf" ]; then
     echo -e "${GREEN}✓ Hyprland configuration installed successfully${NC}"
 else
     echo -e "${RED}✗ Hyprland configuration not found${NC}"

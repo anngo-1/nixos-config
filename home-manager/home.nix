@@ -41,7 +41,7 @@
   };
 
   # Place your configuration files
-  xdg.configFile."hypr/hypr.conf".source = ./config/hypr.conf;
+  xdg.configFile."hypr/hyprland.conf".source = ./config/hyprland.conf;
   
   # Wofi configuration
   xdg.configFile."wofi/config".text = "show=drun";
