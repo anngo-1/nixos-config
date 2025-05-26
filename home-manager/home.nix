@@ -47,11 +47,15 @@
   xdg.configFile."wofi/config".text = "show=drun";
   xdg.configFile."wofi/style.css".source = ./config/wofi/style.css;
   
+  # Waybar configuration
+  xdg.configFile."waybar/config".source = ./config/waybar/config;
+  xdg.configFile."waybar/style.css".source = ./config/waybar/style.css;
+  
   # Ghostty configuration
   xdg.configFile."ghostty/config".source = ./config/ghostty/config;
   
   # Wallpaper
-  home.file."Pictures/wallpapers/wallpaper.png".source = ./assets/wallpaper.png;
+  home.file."Pictures/wallpapers/wallpaper.png".source = ../assets/wallpaper.png;
 
   # Add stuff for your user as you see fit:
   programs.neovim.enable = true;

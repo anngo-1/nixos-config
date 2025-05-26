@@ -1,0 +1,99 @@
+/*
+ *  Base styles
+ */
+
+* {
+	font-family: "Monospace";
+	font-size: 12px;
+	min-height: 0;
+	font-weight:900
+}
+
+window#waybar {
+	background: rgba(0, 0, 0, 0.8);
+	color: #ffffff;
+    padding: 0px; /* Reduced padding for skinnier bar */
+}
+
+/*
+ *  Module styles
+ */
+
+#workspaces button {
+	padding: 0;
+	color: #ffffff;
+    font-size: 7px;
+}
+
+/* Change active workspace to red */
+#workspaces button.active {
+	color: #ff0000; /* Red color for active workspace */
+    /* You can also add other styles like background color or border */
+    /* background-color: #550000; */ /* Darker red background (optional) */
+    /* border: 1px solid #ff5555; */ /* Lighter red border (optional) */
+}
+
+#workspaces button:hover {
+	box-shadow: inherit;
+	text-shadow: inherit;
+}
+
+#window {
+	padding: 0 8px;
+    margin: 0 5px; 
+}
+
+#mode {
+	color: #ffffff;
+	padding: 0 3px;
+    margin: 0 5px; 
+}
+
+#clock-time,
+#clock-date {
+	padding: 0 5px;
+	font-weight: bold;
+    margin: 0 5px; 
+}
+
+#battery,
+#network,
+#pulseaudio,
+#temperature,
+#cpu,
+#memory,
+#language {
+	padding: 0 3px;
+	color: #ffffff;
+    margin: 0 5px; 
+}
+
+#battery.charging {
+	color: #ffffff;
+}
+
+#network.disconnected {
+	color: #ffffff;
+}
+
+#pulseaudio.muted {
+	color: #ffffff;
+}
+
+#tray {
+	padding: 0 5px;
+    margin: 0 5px;
+}
+
+#tray > .passive {
+	-gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+	-gtk-icon-effect: highlight;
+	background-color: #ffffff;
+}
+
+#language {
+	min-width: 14px;
+}
