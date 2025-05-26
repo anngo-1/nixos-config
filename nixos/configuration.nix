@@ -99,6 +99,7 @@
   environment.systemPackages = with pkgs; [ 
     pkgs.pavucontrol
     gnumake
+    pkgs.swaybg
     pkgs.blueman
     pkgs.pamixer
     pkgs.conda
