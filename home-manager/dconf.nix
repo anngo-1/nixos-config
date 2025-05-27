@@ -13,15 +13,20 @@
 
     # window manager keybindings
     "org/gnome/desktop/wm/keybindings" = {
-      close = [ "<Super>q" ];
-      switch-applications = [ "<Super>Tab" "<Alt>Tab" ];
-      switch-applications-backward = [ "<Shift><Super>Tab" "<Shift><Alt>Tab" ];
-      switch-to-workspace-left = [ "<Super>Page_Up" "<Super><Alt>Left" "<Control><Alt>Left" ];
-      switch-to-workspace-right = [ "<Super>Page_Down" "<Super><Alt>Right" "<Control><Alt>Right" ];
+      close = [ <Super>q];
+      switch-applications = [ <Super>Tab  <Alt>Tab];
+      switch-applications-backward = [ <Shift><Super>Tab  <Shift><Alt>Tab];
+      switch-to-workspace-left = [ <Super>Page_Up  <Super><Alt>Left  <Control><Alt>Left];
+      switch-to-workspace-right = [ <Super>Page_Down  <Super><Alt>Right  <Control><Alt>Right];
+      switch-to-workspace-1 = [ <Super>1];
+      switch-to-workspace-2 = [ <Super>2];
+      switch-to-workspace-3 = [ <Super>3];
+      switch-to-workspace-4 = [ <Super>4];
     };
 
-    # media keys
+    # media keys and custom keybindings
     "org/gnome/settings-daemon/plugins/media-keys" = {
+      custom-keybindings = [ /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/];
     };
 
     # interface settings
@@ -30,11 +35,6 @@
       color-scheme = "prefer-dark";
       clock-show-weekday = false;
       clock-show-seconds = false;
-    };
-
-    # desktop background settings
-    "org/gnome/desktop/background" = {
-      show-desktop-icons = false;
     };
 
     # mouse settings
@@ -50,10 +50,6 @@
 
     # nautilus settings
     "org/gnome/nautilus/preferences" = {
-    };
-
-    # file chooser settings
-    "org/gtk/settings/file-chooser" = {
     };
   };
 }
