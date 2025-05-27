@@ -119,8 +119,9 @@
     pkgs.swappy
     pkgs.hyprlock
     pkgs.jq
-    pkgs.gnomeExtensions.dash-to-panel
+    pkgs.gnomeExtensions.dash-to-dock
     pkgs.brightnessctl
+    pkgs.discord
     pkgs.timg
     pkgs.ghostty
     pkgs.dunst
