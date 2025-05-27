@@ -87,54 +87,14 @@ custom_bindings=$(gsettings get org.gnome.settings-daemon.plugins.media-keys cus
 cat >> "$OUTPUT_FILE" << 'EOF'
     # media keys and custom keybindings
     "org/gnome/settings-daemon/plugins/media-keys" = {
-EOF
-
-# if there are custom keybindings, export the list
-if [ "$custom_bindings" != "[]" ] && [ "$custom_bindings" != "@as []" ]; then
-    # extract paths and create properly quoted array
-    paths=$(echo "$custom_bindings" | grep -o '/[^,\]]*' | sed 's|.*|"&"|' | tr '\n' ' ' | sed 's/ $//')
-    echo "      custom-keybindings = [ $paths ];" >> "$OUTPUT_FILE"
-fi
-
-cat >> "$OUTPUT_FILE" << 'EOF'
+      # custom keybindings disabled in export script due to parsing issues
+      # set up custom keybindings manually in gnome settings if needed
     };
 
 EOF
 
-# export individual custom keybindings if they exist
-if [ "$custom_bindings" != "[]" ] && [ "$custom_bindings" != "@as []" ]; then
-    echo -e "${YELLOW}exporting individual custom keybindings...${NC}"
-    
-    # extract paths from the custom bindings and create temp file to avoid subshell issues
-    temp_file=$(mktemp)
-    echo "$custom_bindings" | grep -o '/[^,\]]*' > "$temp_file"
-    
-    while read -r binding_path; do
-        if [ -n "$binding_path" ]; then
-            name=$(gsettings get org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:$binding_path name 2>/dev/null || echo "")
-            command=$(gsettings get org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:$binding_path command 2>/dev/null || echo "")
-            binding=$(gsettings get org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:$binding_path binding 2>/dev/null || echo "")
-            
-            if [ "$name" != "" ] && [ "$command" != "" ] && [ "$binding" != "" ]; then
-                # clean up the values
-                clean_name=$(echo "$name" | sed "s/^'//; s/'$//")
-                clean_command=$(echo "$command" | sed "s/^'//; s/'$//")
-                clean_binding=$(echo "$binding" | sed "s/^'//; s/'$//")
-                
-                cat >> "$OUTPUT_FILE" << EOF
-    # custom keybinding: $clean_name
-    "$binding_path" = {
-      name = "$clean_name";
-      command = "$clean_command";
-      binding = "$clean_binding";
-    };
-
-EOF
-            fi
-        fi
-    done < "$temp_file"
-    rm "$temp_file"
-fi
+# skip exporting individual custom keybindings for now since they're causing issues
+echo -e "${YELLOW}skipping custom keybindings export (set these up manually)...${NC}"
 
 echo -e "${YELLOW}exporting interface settings...${NC}"
 cat >> "$OUTPUT_FILE" << 'EOF'

@@ -26,7 +26,8 @@
 
     # media keys and custom keybindings
     "org/gnome/settings-daemon/plugins/media-keys" = {
-      custom-keybindings = [ "/o" "/g" "/s" "/p" "/m" "/c" "/c" "/']" ];
+      # custom keybindings disabled in export script due to parsing issues
+      # set up custom keybindings manually in gnome settings if needed
     };
 
     # interface settings

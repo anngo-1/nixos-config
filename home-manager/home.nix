@@ -108,18 +108,18 @@
     };
     shellAliases = {
       ll = "ls -l";
-      rebuild-nix = "sudo nixos-rebuild switch --flake /home/an/Documents/nix-config/.#nixos";
-      config-nix = "sudo nvim /home/an/Documents/nix-config/nixos/configuration.nix";
-      hmrebuild-nix = "home-manager switch --flake /home/an/Documents/nix-config/.#an@nixos";
-      hmconfig-nix = "sudo nvim /home/an/Documents/nix-config/home-manager/home.nix";
+      rebuild-nix = "sudo nixos-rebuild switch --flake /home/an/Documents/nixos-config/.#nixos";
+      config-nix = "sudo nvim /home/an/Documents/nixos-config/nixos/configuration.nix";
+      hmrebuild-nix = "home-manager switch --flake /home/an/Documents/nixos-config/.#an@nixos";
+      hmconfig-nix = "sudo nvim /home/an/Documents/nixos-config/home-manager/home.nix";
       vim = "nvim";
       
       # Development environment shortcuts
-      dev-python = "nix-shell /home/an/Documents/nix-config/dev-shells/python.nix";
-      dev-node = "nix-shell /home/an/Documents/nix-config/dev-shells/node.nix";
-      dev-fullstack = "nix-shell /home/an/Documents/nix-config/dev-shells/fullstack.nix";
-      dev-cpp = "nix-shell /home/an/Documents/nix-config/dev-shells/cpp.nix";
-      dev-rust = "nix-shell /home/an/Documents/nix-config/dev-shells/rust.nix";
+      dev-python = "nix-shell /home/an/Documents/nixos-config/nixos/dev-shells/python.nix";
+      dev-node = "nix-shell /home/an/Documents/nixos-config/nixos/dev-shells/node.nix";
+      dev-fullstack = "nix-shell /home/an/Documents/nixos-config/nixos/dev-shells/fullstack.nix";
+      dev-cpp = "nix-shell /home/an/Documents/nixos-config/nixos/dev-shells/cpp.nix";
+      dev-rust = "nix-shell /home/an/Documents/nixos-config/nixos/dev-shells/rust.nix";
     };
   };
   
