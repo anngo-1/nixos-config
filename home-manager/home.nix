@@ -13,6 +13,9 @@
     # inputs.nix-colors.homeManagerModule
     # You can also split up your configuration and import pieces of it here:
     # ./nvim.nix
+    
+    # gnome dconf settings
+    ./dconf.nix
   ];
   nixpkgs = {
     # You can add overlays here
