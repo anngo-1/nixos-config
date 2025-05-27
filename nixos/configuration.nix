@@ -67,6 +67,7 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
+
     # If you want to use JACK applications, uncomment this
     #jack.enable = true;
 
@@ -88,6 +89,8 @@
     ];
   };
   security.polkit.enable = true;
+
+
   programs.firefox.enable = true;
   programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;
@@ -114,7 +117,9 @@
     pkgs.grim
     pkgs.slurp
     pkgs.swappy
+    pkgs.hyprlock
     pkgs.jq
+    pkgs.gnomeExtensions.dash-to-panel
     pkgs.brightnessctl
     pkgs.timg
     pkgs.ghostty
