@@ -65,13 +65,11 @@ EOF
 for key in close switch-applications switch-applications-backward switch-to-workspace-left switch-to-workspace-right switch-to-workspace-1 switch-to-workspace-2 switch-to-workspace-3 switch-to-workspace-4 switch-to-workspace-5 switch-to-workspace-6 switch-to-workspace-7 switch-to-workspace-8 switch-to-workspace-9 switch-to-workspace-10; do
     value=$(gsettings get org.gnome.desktop.wm.keybindings $key 2>/dev/null || echo "null")
     if [ "$value" != "null" ] && [ "$value" != "@as []" ]; then
-        # simple conversion for arrays
+        # convert keybinding arrays properly
         if [[ "$value" == *"'"* ]]; then
-            # has single quotes, convert to nix format
-            clean_array=$(echo "$value" | sed "s/@as //; s/\[/[ /; s/\]/]/; s/'//g; s/,/ /g")
-            # add quotes around each item
-            nix_array=$(echo "$clean_array" | sed 's/\([^[\] ]\+\)/"\1"/g')
-            echo "      $key = $nix_array;" >> "$OUTPUT_FILE"
+            # extract individual keybindings and quote them properly
+            keybindings=$(echo "$value" | grep -o "'[^']*'" | sed "s/'//g" | sed 's/.*/"&"/' | tr '\n' ' ' | sed 's/ $//')
+            echo "      $key = [ $keybindings ];" >> "$OUTPUT_FILE"
         fi
     fi
 done
@@ -93,12 +91,9 @@ EOF
 
 # if there are custom keybindings, export the list
 if [ "$custom_bindings" != "[]" ] && [ "$custom_bindings" != "@as []" ]; then
-    # convert custom keybindings array
-    if [[ "$custom_bindings" == *"'"* ]]; then
-        clean_bindings=$(echo "$custom_bindings" | sed "s/@as //; s/\[/[ /; s/\]/]/; s/'//g; s/,/ /g")
-        nix_bindings=$(echo "$clean_bindings" | sed 's|\(/[^[\] ]*\)|"\1"|g')
-        echo "      custom-keybindings = $nix_bindings;" >> "$OUTPUT_FILE"
-    fi
+    # extract paths and create properly quoted array
+    paths=$(echo "$custom_bindings" | grep -o '/[^,\]]*' | sed 's|.*|"&"|' | tr '\n' ' ' | sed 's/ $//')
+    echo "      custom-keybindings = [ $paths ];" >> "$OUTPUT_FILE"
 fi
 
 cat >> "$OUTPUT_FILE" << 'EOF'
@@ -110,8 +105,11 @@ EOF
 if [ "$custom_bindings" != "[]" ] && [ "$custom_bindings" != "@as []" ]; then
     echo -e "${YELLOW}exporting individual custom keybindings...${NC}"
     
-    # extract paths from the custom bindings
-    echo "$custom_bindings" | grep -o '/[^,\]]*' | while read -r binding_path; do
+    # extract paths from the custom bindings and create temp file to avoid subshell issues
+    temp_file=$(mktemp)
+    echo "$custom_bindings" | grep -o '/[^,\]]*' > "$temp_file"
+    
+    while read -r binding_path; do
         if [ -n "$binding_path" ]; then
             name=$(gsettings get org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:$binding_path name 2>/dev/null || echo "")
             command=$(gsettings get org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:$binding_path command 2>/dev/null || echo "")
@@ -134,7 +132,8 @@ if [ "$custom_bindings" != "[]" ] && [ "$custom_bindings" != "@as []" ]; then
 EOF
             fi
         fi
-    done
+    done < "$temp_file"
+    rm "$temp_file"
 fi
 
 echo -e "${YELLOW}exporting interface settings...${NC}"
