@@ -114,12 +114,12 @@
       hmconfig-nix = "sudo nvim /home/an/Documents/nixos-config/home-manager/home.nix";
       vim = "nvim";
       
-      # Development environment shortcuts
-      dev-python = "nix-shell /home/an/Documents/nixos-config/nixos/dev-shells/python.nix";
-      dev-node = "nix-shell /home/an/Documents/nixos-config/nixos/dev-shells/node.nix";
-      dev-fullstack = "nix-shell /home/an/Documents/nixos-config/nixos/dev-shells/fullstack.nix";
-      dev-cpp = "nix-shell /home/an/Documents/nixos-config/nixos/dev-shells/cpp.nix";
-      dev-rust = "nix-shell /home/an/Documents/nixos-config/nixos/dev-shells/rust.nix";
+      # Development environment shortcuts (FIXED with --run zsh)
+      dev-python = "nix-shell /home/an/Documents/nixos-config/nixos/dev-shells/python.nix --run zsh";
+      dev-node = "nix-shell /home/an/Documents/nixos-config/nixos/dev-shells/node.nix --run zsh";
+      dev-fullstack = "nix-shell /home/an/Documents/nixos-config/nixos/dev-shells/fullstack.nix --run zsh";
+      dev-cpp = "nix-shell /home/an/Documents/nixos-config/nixos/dev-shells/cpp.nix --run zsh";
+      dev-rust = "nix-shell /home/an/Documents/nixos-config/nixos/dev-shells/rust.nix --run zsh";
     };
   };
   
