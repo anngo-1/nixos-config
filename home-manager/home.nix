@@ -72,8 +72,20 @@
     userEmail = "andngo2004@gmail.com";
   };
   
+  # Custom zsh theme with nix-shell support
   home.file.".oh-my-zsh/custom/themes/an.zsh-theme".text = ''
-    PROMPT='%{$fg_bold[red]%}➜ %{$fg_bold[green]%} %{$fg_bold[white]%}%~ %{$fg_bold[blue]%}$(git_prompt_info)%{$fg_bold[blue]%} % %{$reset_color%}'
+    # Function to show nix-shell info
+    nix_shell_info() {
+      if [[ -n "$IN_NIX_SHELL" ]]; then
+        if [[ -n "$DEV_SHELL_NAME" ]]; then
+          echo "%{$fg_bold[cyan]%}($DEV_SHELL_NAME)%{$reset_color%} "
+        else
+          echo "%{$fg_bold[cyan]%}(nix-shell)%{$reset_color%} "
+        fi
+      fi
+    }
+    
+    PROMPT='$(nix_shell_info)%{$fg_bold[red]%}➜ %{$fg_bold[green]%} %{$fg_bold[white]%}%~ %{$fg_bold[blue]%}$(git_prompt_info)%{$fg_bold[blue]%} % %{$reset_color%}'
     ZSH_THEME_GIT_PROMPT_PREFIX="git:(%{$fg[red]%}"
     ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
     ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[blue]%}) %{$fg[yellow]%}✗%{$reset_color%}"
@@ -101,6 +113,13 @@
       hmrebuild-nix = "home-manager switch --flake /home/an/Documents/nix-config/.#an@nixos";
       hmconfig-nix = "sudo nvim /home/an/Documents/nix-config/home-manager/home.nix";
       vim = "nvim";
+      
+      # Development environment shortcuts
+      dev-python = "nix-shell /home/an/Documents/nix-config/dev-shells/python.nix";
+      dev-node = "nix-shell /home/an/Documents/nix-config/dev-shells/node.nix";
+      dev-fullstack = "nix-shell /home/an/Documents/nix-config/dev-shells/fullstack.nix";
+      dev-cpp = "nix-shell /home/an/Documents/nix-config/dev-shells/cpp.nix";
+      dev-rust = "nix-shell /home/an/Documents/nix-config/dev-shells/rust.nix";
     };
   };
   
