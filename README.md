@@ -49,6 +49,3 @@ Then, running the export.sh script which will generate the dconf.nix from your c
 ```bash
 sh export.sh
 ```
-
-![GNOME setup](examples/gnome.png)
-GNOME Setup
