@@ -19,7 +19,7 @@ Then, run the installation script in the directory.
 ```bash
 cd nixos-config
 chmod +x install.sh
-./install,sh
+./install.sh
 ```
 
 This will build and switch the entire system configuration into my fully configured system.

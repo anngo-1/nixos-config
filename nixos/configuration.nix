@@ -21,6 +21,7 @@
     '';
   # Enable networking
   networking.networkmanager.enable = true;
+  programs.nix-ld.enable = true;
   # Set your time zone.
   time.timeZone = "America/Los_Angeles";
 
@@ -102,6 +103,9 @@
   environment.systemPackages = with pkgs; [ 
     pkgs.pavucontrol
     gnumake
+    pkgs.nodejs
+    pkgs.electron
+    pkgs.steam-run
     pkgs.swaybg
     pkgs.blueman
     pkgs.pamixer
@@ -112,11 +116,45 @@
     pkgs.wlogout
     pkgs.imagemagick
     pkgs.file
+    pkgs.code-cursor
     pkgs.swaylock
     pkgs.heroku
     pkgs.grim
     pkgs.slurp
     pkgs.swappy
+    pkgs.nodejs
+	pkgs.electron
+	pkgs.imagemagick
+	pkgs.glib
+	pkgs.gtk3
+	pkgs.pango
+	pkgs.cairo
+	pkgs.gdk-pixbuf
+	pkgs.atk
+	pkgs.at-spi2-atk
+	pkgs.nspr
+	pkgs.nss
+	pkgs.cups
+	pkgs.dbus
+	pkgs.expat
+	pkgs.fontconfig
+	pkgs.freetype
+	pkgs.libdrm
+	pkgs.mesa
+	pkgs.alsa-lib
+	pkgs.udev
+	pkgs.xorg.libX11
+	pkgs.xorg.libxcb
+	pkgs.xorg.libXcomposite
+	pkgs.xorg.libXcursor
+	pkgs.xorg.libXdamage
+	pkgs.xorg.libXext
+	pkgs.xorg.libXfixes
+	pkgs.xorg.libXi
+	pkgs.xorg.libXrandr
+	pkgs.xorg.libXrender
+	pkgs.xorg.libXtst
+	pkgs.xorg.libXScrnSaver
     pkgs.hyprlock
     pkgs.jq
     pkgs.gnomeExtensions.dash-to-dock
